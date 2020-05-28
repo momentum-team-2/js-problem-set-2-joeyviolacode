@@ -10,6 +10,16 @@ function remove(arr, member) {
     return arr.filter(name => name !== member)
 }
 
+/*function remove(arr, member) {
+    let newArray = []
+    for (let name of arr) {
+        if (name !== member) {
+            newArray.push(name)
+        }
+    }
+    return newArray
+}*/
+
 
 // 2. Revisit your "remove" function. Make sure that it does not change the original
 // array but instead returns a new array.
@@ -18,17 +28,18 @@ function remove(arr, member) {
 // returns the sum of those numbers.
 
 /*function sum(arr) {
-    let x = 0
-    while (arr.length > 0) {
-        x += arr.pop()
+    let total = 0
+    let temp = [...arr]
+    while (temp.length > 0) {
+        total += temp.pop()
     }
-    return x
+    return total
 }*/
 
 /*function sum(arr) {
     let total = 0
-    for (let i = 0; i < arr.length; i++) {
-        total += arr[i]
+    for (let num of nums) {
+        total += num
     }
     return total
 }*/
@@ -48,15 +59,46 @@ function average(arr) {
     return sum(arr)/arr.length
 }
 
+// SAME AS
+
+/*function average(arr) {
+    return arr.length === 0 ? undefined : sum(arr)/arr.length
+}*/
+
+
+
 // 5. Create a function called "minimum" that takes an array of numbers and
 // returns the smallest number in that array.
+
+/*function minimum(arr) {
+    if (arr.length === 0) {
+        return undefined
+    }
+    return Math.min(...arr)
+}*/
 
 function minimum(arr) {
     if (arr.length === 0) {
         return undefined
     }
-    return Math.min(...arr)
+    let lowest = 1000000000
+    for (let num of arr) {
+        if (num < lowest) {
+            lowest = num
+        }
+    }
+    return lowest
 }
+
+//SAME AS
+/*
+function minimum(arr) {
+    return arr.length === 0 ? undefined : Math.min(...arr)
+}*/
+
+
+
+                            
 // 6. There are many techniques to sort arrays in programming. Your programming
 // language will likely include the ability to do this. We are going to
 // implement sorting ourselves, however.
@@ -92,12 +134,28 @@ function selectionSort(arr) {
     return newArr
 }
 
+
+
 // 7. Create a function called `textList` that takes an array and joins its elements
 // into a string separated by commas.
 //
 // For example, `textList(['Cadence', 'Ordel', 'Marion'])` results in the string
 // `"Cadence,Ordel,Marion"`.
 
-function textList(arr) {
+/*function textList(arr) {
     return arr.join(',')
+}*/
+
+function textList(arr) {
+    let list = ""
+    if (arr.length === 0) {
+        return ""
+    } /*else if (arr.length === 1) {     //Works with or without this code
+        return arr[0];
+    }*/ else {
+        for (let i = 0; i < arr.length - 1; i++) {
+            list += arr[i] + ","
+        }
+    }
+    return list += arr[arr.length - 1]
 }
